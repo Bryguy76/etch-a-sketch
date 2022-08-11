@@ -1,9 +1,15 @@
 'use strict';
 
-const drawingArea = document.querySelector('.drawing-area')
+const drawingArea = document.querySelector('.drawing-area');
 
-for(let i = 0, i < 16, i++) {
-   const div = document.createElement('div');
-   div.classList.add('grid-item')
-    drawingArea.appendChild(div)
-};
+function createGrid(width, height) {
+  for (let i = 0; i < width * height; i++) {
+    let div = document.createElement('div');
+    div.classList.add('grid-item');
+    drawingArea.appendChild(div);
+  }
+}
+
+createGrid(16, 16);
+
+gridItems = document.querySelectorAll('.grid-item');
