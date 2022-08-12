@@ -11,5 +11,3 @@ function createGrid(width, height) {
 }
 
 createGrid(16, 16);
-
-gridItems = document.querySelectorAll('.grid-item');
