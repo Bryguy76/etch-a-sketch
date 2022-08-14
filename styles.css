@@ -56,6 +56,10 @@ button {
   cursor: pointer;
 }
 
+.selected {
+  border-color: yellow;
+  box-shadow: 0 0 2px yellow;
+}
 #b1 {
   background-color: black;
 }
@@ -88,4 +92,14 @@ button {
     indigo,
     violet
   );
+}
+
+.reset {
+  width: 4rem;
+  height: 2rem;
+  background-color: aquamarine;
+  color: aliceblue;
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
 }
