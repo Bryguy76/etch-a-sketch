@@ -23,7 +23,7 @@ function createGrid(width, height) {
 
 createGrid(16, 16);
 
-let gridItems = document.querySelectorAll('.grid-item');
+const gridItems = document.querySelectorAll('.grid-item');
 
 function onHover(element) {
   element.style.backgroundColor = `${selectedColor}`;
@@ -36,7 +36,9 @@ gridItems.forEach(gridNode => {
 });
 
 resetButton.addEventListener('click', function () {
-  gridItems.style.backgroundColor = 'white';
+  gridItems.forEach(gridNode => {
+    gridNode.style.backgroundColor = 'white';
+  });
 });
 
 black.addEventListener('click', function () {
