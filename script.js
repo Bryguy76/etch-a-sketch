@@ -11,6 +11,9 @@ const green = document.querySelector('#b6');
 const blue = document.querySelector('#b7');
 const rainbow = document.querySelector('#b8');
 const buttons = document.querySelectorAll('.color-option');
+const gridSize = document.querySelector('.grid-size');
+const gridParams = document.querySelector('.grid-params');
+const submitButton = document.querySelector('.submit');
 let selectedColor = 'black';
 
 function createGrid(width, height) {
@@ -23,7 +26,7 @@ function createGrid(width, height) {
 
 createGrid(16, 16);
 
-const gridItems = document.querySelectorAll('.grid-item');
+let gridItems = document.querySelectorAll('.grid-item');
 
 function onHover(element) {
   element.style.backgroundColor = `${selectedColor}`;
@@ -40,6 +43,8 @@ resetButton.addEventListener('click', function () {
     gridNode.style.backgroundColor = 'white';
   });
 });
+
+//COLOR PICKER BUTTONS
 
 black.addEventListener('click', function () {
   cyan.classList.remove('selected');
@@ -127,4 +132,41 @@ rainbow.addEventListener('click', function () {
   rainbow.classList.add('selected');
   cyan.classList.remove('selected');
   selectedColor = 'rainbow';
+});
+
+//REVEAL GRID SIZE FORM
+gridSize.addEventListener('click', function () {
+  gridParams.classList.remove('hidden');
+});
+
+//CREATE NEW GRID/THROW WARNINGS
+submitButton.addEventListener('click', function () {
+  let height = Number(document.querySelector('.height').value);
+  let width = Number(document.querySelector('.width').value);
+
+  if (width > 100 || height > 100) {
+    let warning = document.createElement('p');
+    warning.classList.add('warning');
+    warning.textContent = 'Cannot use a width or height greater than 100.';
+    gridParams.appendChild(warning);
+  } else if (!width || !height) {
+    let warning = document.createElement('p');
+    warning.classList.add('warning');
+    warning.textContent =
+      'Width and height both must have a valid integer value.';
+    gridParams.appendChild(warning);
+  } else if (width && height) {
+    while (drawingArea.firstChild) {
+      drawingArea.removeChild(drawingArea.lastChild);
+    }
+    createGrid(width, height);
+    gridItems = document.querySelectorAll('.grid-item');
+    gridItems.forEach(gridNode => {
+      gridNode.addEventListener('mouseover', function () {
+        onHover(gridNode);
+      });
+    });
+    drawingArea.style('grid-template-columns', `repeat(${width}, 1.5em)`);
+    drawingArea.style('grid-template-rows', ''`repeat(${height}, 1.5em)`);
+  }
 });
