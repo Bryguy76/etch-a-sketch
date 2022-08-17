@@ -166,7 +166,7 @@ submitButton.addEventListener('click', function () {
         onHover(gridNode);
       });
     });
-    drawingArea.style('grid-template-columns', `repeat(${width}, 1.5em)`);
-    drawingArea.style('grid-template-rows', ''`repeat(${height}, 1.5em)`);
+    drawingArea.style.gridTemplateColumns = `repeat(${width}, 1.5em)`;
+    drawingArea.style.gridTemplateRows = `repeat(${height}, 1.5em)`;
   }
 });
