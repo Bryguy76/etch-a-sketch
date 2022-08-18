@@ -25,14 +25,17 @@
 
 .drawing-area {
   display: grid;
-  grid-template-columns: repeat(16, 1.5em);
-  grid-template-rows: repeat(16, 1.5em);
+  min-width: 0px;
+  max-width: 24em;
+  min-height: 0px;
+  width: 24em;
+  height: 24em;
+  grid-template-columns: repeat(16, minmax(0.25em, 1.5em));
+  grid-template-rows: repeat(16, minmax(0.25em, 1.5em));
 }
 
 .grid-item {
   background-color: white;
-  width: 1.5em;
-  height: 1.5em;
   border: 1px solid black;
 }
 

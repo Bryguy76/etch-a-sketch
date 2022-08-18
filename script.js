@@ -141,8 +141,8 @@ gridSize.addEventListener('click', function () {
 
 //CREATE NEW GRID/THROW WARNINGS
 submitButton.addEventListener('click', function () {
-  let height = Number(document.querySelector('.height').value);
-  let width = Number(document.querySelector('.width').value);
+  let height = Number(document.querySelector('.size').value);
+  let width = Number(document.querySelector('.size').value);
 
   if (width > 100 || height > 100) {
     let warning = document.createElement('p');
@@ -166,7 +166,19 @@ submitButton.addEventListener('click', function () {
         onHover(gridNode);
       });
     });
-    drawingArea.style.gridTemplateColumns = `repeat(${width}, 1.5em)`;
-    drawingArea.style.gridTemplateRows = `repeat(${height}, 1.5em)`;
+
+    // if (width * height < 400) {
+    //   drawingArea.style.gridTemplateColumns = `repeat(${width}, 1.25em)`;
+    //   drawingArea.style.gridTemplateRows = `repeat(${height}, 1.25em)`;
+    // } else if (width * height < 700) {
+    //   drawingArea.style.gridTemplateColumns = `repeat(${width}, .75em)`;
+    //   drawingArea.style.gridTemplateRows = `repeat(${height}, .75em)`;
+    // } else if (width * height >= 700) {
+    //   drawingArea.style.gridTemplateColumns = `repeat(${width}, 0.25em)`;
+    //   drawingArea.style.gridTemplateRows = `repeat(${height}, 0.25em)`;
+    // }
+
+    drawingArea.style.gridTemplateColumns = `repeat(${width}, minmax(5px, 1.5em))`;
+    drawingArea.style.gridTemplateRows = `repeat(${height}, minmax(5px, 1.5em))`;
   }
 });
