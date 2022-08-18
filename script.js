@@ -15,6 +15,15 @@ const gridSize = document.querySelector('.grid-size');
 const gridParams = document.querySelector('.grid-params');
 const submitButton = document.querySelector('.submit');
 let selectedColor = 'black';
+let rainbowPaint = [
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'blue',
+  'indigo',
+  'violet',
+];
 
 function createGrid(width, height) {
   for (let i = 0; i < width * height; i++) {
@@ -29,7 +38,13 @@ createGrid(16, 16);
 let gridItems = document.querySelectorAll('.grid-item');
 
 function onHover(element) {
-  element.style.backgroundColor = `${selectedColor}`;
+  if (selectedColor === 'rainbow') {
+    element.style.backgroundColor = `${
+      rainbowPaint[Math.trunc(Math.random() * 8)]
+    }`;
+  } else {
+    element.style.backgroundColor = `${selectedColor}`;
+  }
 }
 
 gridItems.forEach(gridNode => {
@@ -152,8 +167,7 @@ submitButton.addEventListener('click', function () {
   } else if (!width || !height) {
     let warning = document.createElement('p');
     warning.classList.add('warning');
-    warning.textContent =
-      'Width and height both must have a valid integer value.';
+    warning.textContent = 'Size must be a valid integer value.';
     gridParams.appendChild(warning);
   } else if (width && height) {
     while (drawingArea.firstChild) {
@@ -167,18 +181,7 @@ submitButton.addEventListener('click', function () {
       });
     });
 
-    // if (width * height < 400) {
-    //   drawingArea.style.gridTemplateColumns = `repeat(${width}, 1.25em)`;
-    //   drawingArea.style.gridTemplateRows = `repeat(${height}, 1.25em)`;
-    // } else if (width * height < 700) {
-    //   drawingArea.style.gridTemplateColumns = `repeat(${width}, .75em)`;
-    //   drawingArea.style.gridTemplateRows = `repeat(${height}, .75em)`;
-    // } else if (width * height >= 700) {
-    //   drawingArea.style.gridTemplateColumns = `repeat(${width}, 0.25em)`;
-    //   drawingArea.style.gridTemplateRows = `repeat(${height}, 0.25em)`;
-    // }
-
-    drawingArea.style.gridTemplateColumns = `repeat(${width}, minmax(5px, 1.5em))`;
-    drawingArea.style.gridTemplateRows = `repeat(${height}, minmax(5px, 1.5em))`;
+    drawingArea.style.gridTemplateColumns = `repeat(${width}, minmax(1px, 2em))`;
+    drawingArea.style.gridTemplateRows = `repeat(${height}, minmax(1px, 2em))`;
   }
 });

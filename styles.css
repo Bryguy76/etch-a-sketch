@@ -26,17 +26,19 @@
 .drawing-area {
   display: grid;
   min-width: 0px;
-  max-width: 24em;
+  max-width: 30em;
   min-height: 0px;
-  width: 24em;
-  height: 24em;
-  grid-template-columns: repeat(16, minmax(0.25em, 1.5em));
-  grid-template-rows: repeat(16, minmax(0.25em, 1.5em));
+  width: 30em;
+  height: 30em;
+  grid-template-columns: repeat(16, minmax(0.25em, 2em));
+  grid-template-rows: repeat(16, minmax(0.25em, 2em));
 }
 
 .grid-item {
   background-color: white;
-  border: 1px solid black;
+  min-height: 0px;
+  min-width: 0px;
+  /* border: 0.25px solid black; */
 }
 
 .below {
