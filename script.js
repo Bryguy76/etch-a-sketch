@@ -36,11 +36,11 @@ function createGrid(width, height) {
 createGrid(16, 16);
 
 let gridItems = document.querySelectorAll('.grid-item');
-
+let mouseDown = false;
 function onHover(element) {
   if (selectedColor === 'rainbow') {
     element.style.backgroundColor = `${
-      rainbowPaint[Math.trunc(Math.random() * 8)]
+      rainbowPaint[Math.trunc(Math.random() * 7)]
     }`;
   } else {
     element.style.backgroundColor = `${selectedColor}`;
@@ -48,8 +48,16 @@ function onHover(element) {
 }
 
 gridItems.forEach(gridNode => {
+  gridNode.addEventListener('mousedown', function () {
+    mouseDown = true;
+  });
+  gridNode.addEventListener('mouseup', function () {
+    mouseDown = false;
+  });
   gridNode.addEventListener('mouseover', function () {
-    onHover(gridNode);
+    if (mouseDown) {
+      onHover(gridNode);
+    }
   });
 });
 
